@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <attr name="textViewCorner" format="dimension"/>
+  <declare-styleable name="ColorTextView">
+    <attr name="textViewCorner"/>
+    <attr name="borderColor" format="color"/>
+    <attr name="borderWidth" format="dimension"/>
+  </declare-styleable>
+
+  <declare-styleable name="BorderTextView">
+    <attr name="textViewCorner"/>
+    <attr name="bgColor" format="color"/>
+  </declare-styleable>
+</resources>
