@@ -1,4 +1,4 @@
-package com.hyif.hyifapplication.utils.view;
+package com.hyif.hyifapplication.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,16 +10,17 @@ import android.widget.TextView;
  * @author: 黄一凡
  * @date: 2017-07-17
  */
-public class ColorTextView extends TextView {
-  public ColorTextView(Context context) {
+public class BorderTextView extends TextView {
+  private int mBgColor;
+  public BorderTextView(Context context) {
     this(context, null);
   }
 
-  public ColorTextView(Context context, AttributeSet attrs) {
+  public BorderTextView(Context context, AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public ColorTextView(Context context, AttributeSet attrs,
+  public BorderTextView(Context context, AttributeSet attrs,
       int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     getAttr(attrs);
