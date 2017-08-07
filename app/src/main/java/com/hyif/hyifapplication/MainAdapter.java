@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.hyif.common_library.recyclerview.adaper.BaseMultiTypeAdapter;
 import com.hyif.common_library.recyclerview.adapterdelegate.AdapterDelegatesManager;
 import com.hyif.common_library.recyclerview.model.DisplayableItem;
 import com.hyif.hyifapplication.adapterdelegates.AdvertisementAdapterDelegate;
@@ -33,42 +34,14 @@ import java.util.List;
 /**
  * @author Hannes Dorfmann
  */
-public class MainAdapter extends RecyclerView.Adapter {
-
-  private AdapterDelegatesManager<List<DisplayableItem>> delegatesManager;
-  private List<DisplayableItem> items;
+public class MainAdapter extends BaseMultiTypeAdapter {
 
   public MainAdapter(Activity activity, List<DisplayableItem> items) {
-    this.items = items;
-
-    // Delegates
-    delegatesManager = new AdapterDelegatesManager<>();
-    delegatesManager.addDelegate(new AdvertisementAdapterDelegate(activity));
-    delegatesManager.addDelegate(new CatAdapterDelegate(activity));
-    delegatesManager.addDelegate(new DogAdapterDelegate(activity));
-    delegatesManager.addDelegate(new GeckoAdapterDelegate(activity));
-    delegatesManager.addDelegate(new SnakeListItemAdapterDelegate(activity));
-
-  }
-
-  @Override public int getItemViewType(int position) {
-    return delegatesManager.getItemViewType(items, position);
-  }
-
-  @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    return delegatesManager.onCreateViewHolder(parent, viewType);
-  }
-
-	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-		delegatesManager.onBindViewHolder(items, position, holder);
-	}
-
-	@Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, List payloads) {
-	  delegatesManager.onBindViewHolder(items, position, holder, payloads);
-  }
-
-  @Override public int getItemCount() {
-    return items.size();
+      super(activity,items);
+    addDelegate(new AdvertisementAdapterDelegate(activity));
+    addDelegate(new CatAdapterDelegate(activity));
+    addDelegate(new DogAdapterDelegate(activity));
+    addDelegate(new GeckoAdapterDelegate(activity));
+    addDelegate(new SnakeListItemAdapterDelegate(activity));
   }
 }

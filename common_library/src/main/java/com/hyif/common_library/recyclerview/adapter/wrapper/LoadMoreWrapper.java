@@ -128,7 +128,7 @@ public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private ViewHolder getLoadMoreViewHolder() {
-        if(mLoadMoreView!=null) {
+        if(mLoadMoreView==null) {
             mLoadMoreView = new TextView(mContext);
             mLoadMoreView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             mLoadMoreView.setPadding(20, 20, 20, 20);

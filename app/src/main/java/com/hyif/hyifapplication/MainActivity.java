@@ -2,11 +2,13 @@ package com.hyif.hyifapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.hyif.common_library.recyclerview.adapter.wrapper.LoadMoreWrapper;
 import com.hyif.common_library.recyclerview.model.DisplayableItem;
 import com.hyif.hyifapplication.model.Advertisement;
 import com.hyif.hyifapplication.model.Cat;
@@ -19,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+  private LoadMoreWrapper mLoadMoreWrapper;
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -27,7 +29,14 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rv = (RecyclerView) findViewById(R.id.recyclerView);
     rv.setLayoutManager(new LinearLayoutManager(this));
     MainAdapter adapter = new MainAdapter(this, getAnimals());
-    rv.setAdapter(adapter);
+    mLoadMoreWrapper = new LoadMoreWrapper(this,adapter);
+    rv.setAdapter(mLoadMoreWrapper);
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        mLoadMoreWrapper.showNoMore();
+      }
+    },3000);
   }
 
   private List<DisplayableItem> getAnimals() {
